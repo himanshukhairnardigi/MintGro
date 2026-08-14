@@ -1,22 +1,29 @@
-export default function Home() {
+import Hero from "@/components/sections/Hero";
+import Trusted from "@/components/sections/Trusted";
+import Challenges from "@/components/sections/Challenges";
+import CRM from "@/components/sections/CRM";
+import Industries from "@/components/sections/Industries";
+import Personalized from "@/components/sections/Personalized";
+import Experience from "@/components/sections/Experience";
+import Steps from "@/components/sections/Steps";
+import Pricing from "@/components/sections/Pricing";
+import FAQ from "@/components/sections/FAQ";
+import FinalCTA from "@/components/sections/FinalCTA";
+
+export default function HomePage() {
   return (
     <main>
-
-      <section className="min-h-[700px]">
-        <div className="mx-auto max-w-[1200px] px-6 py-24 lg:px-8">
-
-          <h1 className="max-w-4xl font-serif text-5xl leading-tight text-[#315B4D] md:text-6xl">
-            Business growth made simple.
-          </h1>
-
-          <p className="mt-6 max-w-2xl text-lg leading-8 text-[#666]">
-            Build better processes, manage your business,
-            and accelerate growth with Mintgro.
-          </p>
-
-        </div>
-      </section>
-
+      <Hero />
+      <Trusted />
+      <Challenges />
+      <CRM />
+      <Industries />
+      <Personalized />
+      <Experience />
+      <Steps />
+      <Pricing />
+      <FAQ />
+      <FinalCTA />
     </main>
   );
 }

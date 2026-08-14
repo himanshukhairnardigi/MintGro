@@ -1,166 +1,115 @@
 "use client";
 
-import Link from "next/link";
-import { ChevronDown, ArrowRight, Menu, X } from "lucide-react";
 import { useState } from "react";
-
-const navigation = [
-  {
-    label: "About",
-    href: "/about",
-  },
-  {
-    label: "Solutions",
-    href: "/solutions",
-  },
-  {
-    label: "Modules",
-    href: "/modules",
-  },
-  {
-    label: "Resources",
-    href: "/resources",
-  },
-];
+import Link from "next/link";
+import { ChevronDown, Menu, X, ArrowRight } from "lucide-react";
+import { navigation } from "@/lib/navigation";
 
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [active, setActive] = useState<string | null>(null);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-black/[0.06] bg-white">
-      <div className="mx-auto flex h-[89px] max-w-[1200px] items-center px-6 lg:px-8">
-
-        {/* Logo */}
-        <Link
-          href="/"
-          className="flex shrink-0 items-center"
-        >
-          <div className="flex items-center">
-
-            <span className="font-serif text-[30px] leading-none tracking-[-1.5px] text-[#315B4D]">
-              Mintgro
-            </span>
-
-            <span className="mx-3 h-[35px] w-px bg-[#D8DED9]" />
-
-            <span className="flex flex-col text-[12px] leading-[14px]">
-              <span className="font-medium text-[#292929]">
-                Business Growth
-              </span>
-
-              <span className="text-[#8A8A8A]">
-                Made Simple
-              </span>
-            </span>
-
-          </div>
+    <header className="sticky top-0 z-50 border-b border-black/[.05] bg-white/95 backdrop-blur-md">
+      <div className="container flex h-[68px] items-center">
+        <Link href="/" className="flex items-center shrink-0">
+          <span className="serif text-[23px] tracking-[-1px] text-[#315b4d]">
+            Mintgro
+          </span>
+          <span className="mx-2 h-7 w-px bg-[#d7dedb]" />
+          <span className="hidden text-[8px] leading-[10px] sm:flex sm:flex-col">
+            <span className="font-bold">Business Growth</span>
+            <span className="text-[#8b918e]">Made Simple</span>
+          </span>
         </Link>
 
-        {/* Desktop Navigation */}
-        <nav className="ml-auto hidden items-center lg:flex">
-
-          <div className="flex items-center gap-8">
-
-            {navigation.map((item) => (
+        <nav className="ml-auto hidden items-center gap-7 lg:flex">
+          {navigation.map((item) => (
+            <div
+              key={item.label}
+              className="relative"
+              onMouseEnter={() => item.items.length && setActive(item.label)}
+              onMouseLeave={() => setActive(null)}
+            >
               <Link
-                key={item.label}
                 href={item.href}
-                className="group flex items-center gap-1.5 text-[13px] font-medium text-[#292929] transition-colors hover:text-[#008C68]"
+                className="flex items-center gap-1 text-[11px] font-medium text-[#303634] hover:text-[#008d69]"
               >
                 {item.label}
-
-                <ChevronDown
-                  size={13}
-                  strokeWidth={1.7}
-                  className="transition-transform duration-200 group-hover:translate-y-[1px]"
-                />
+                {item.items.length > 0 && <ChevronDown size={11} />}
               </Link>
-            ))}
 
-          </div>
+              {item.items.length > 0 && active === item.label && (
+                <div className="absolute left-1/2 top-full mt-4 w-44 -translate-x-1/2 rounded-xl border border-[#e4ebe7] bg-white p-2 shadow-xl">
+                  {item.items.map((sub) => (
+                    <Link
+                      key={sub}
+                      href={item.href}
+                      className="block rounded-lg px-3 py-2 text-xs text-[#58625e] hover:bg-[#f0f8f4] hover:text-[#008d69]"
+                    >
+                      {sub}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
 
-          {/* CTA area */}
-          <div className="ml-24 flex items-center gap-5">
+          <Link
+            href="#contact"
+            className="text-[11px] font-medium hover:text-[#008d69]"
+          >
+            Book a Demo
+          </Link>
 
-            <Link
-              href="/contact"
-              className="whitespace-nowrap text-[13px] font-medium text-[#292929] transition-colors hover:text-[#008C68]"
-            >
-              Book a Demo
-            </Link>
-
-            <Link
-              href="/signup"
-              className="group flex h-[31px] items-center gap-2 rounded-[6px] bg-[#008F6B] px-4 text-[13px] font-medium text-white transition-all duration-200 hover:bg-[#00795B]"
-            >
-              Start Free Trial
-
-              <ArrowRight
-                size={15}
-                strokeWidth={1.8}
-                className="transition-transform duration-200 group-hover:translate-x-1"
-              />
-            </Link>
-
-          </div>
-
+          <Link href="#pricing" className="btn btn-green h-8 min-h-8">
+            Start Free Trial
+            <ArrowRight size={12} />
+          </Link>
         </nav>
 
-        {/* Mobile button */}
         <button
-          type="button"
-          aria-label="Toggle menu"
-          onClick={() => setMobileOpen(!mobileOpen)}
-          className="ml-auto flex lg:hidden"
+          className="ml-auto rounded-md p-2 lg:hidden"
+          aria-label={mobileOpen ? "Close navigation" : "Open navigation"}
+          onClick={() => setMobileOpen((v) => !v)}
         >
-          {mobileOpen ? (
-            <X size={25} />
-          ) : (
-            <Menu size={25} />
-          )}
+          {mobileOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
-
       </div>
 
-      {/* Mobile Navigation */}
       {mobileOpen && (
-        <div className="border-t border-black/[0.06] bg-white px-6 py-5 lg:hidden">
-
-          <nav className="flex flex-col">
-
+        <div className="border-t border-black/[.05] bg-white lg:hidden">
+          <nav className="container flex flex-col py-4">
             {navigation.map((item) => (
               <Link
                 key={item.label}
                 href={item.href}
                 onClick={() => setMobileOpen(false)}
-                className="flex items-center justify-between border-b border-black/[0.06] py-4 text-[15px] font-medium"
+                className="flex items-center justify-between border-b border-[#edf0ef] py-4 text-sm font-medium"
               >
                 {item.label}
-
-                <ChevronDown size={15} />
+                {item.items.length > 0 && <ChevronDown size={14} />}
               </Link>
             ))}
 
             <Link
-              href="/contact"
-              className="mt-5 text-[15px] font-medium"
+              href="#contact"
+              onClick={() => setMobileOpen(false)}
+              className="py-4 text-sm font-medium"
             >
               Book a Demo
             </Link>
 
             <Link
-              href="/signup"
-              className="mt-4 flex h-11 items-center justify-center gap-2 rounded-md bg-[#008F6B] text-sm font-medium text-white"
+              href="#pricing"
+              onClick={() => setMobileOpen(false)}
+              className="btn btn-green mt-2"
             >
-              Start Free Trial
-              <ArrowRight size={16} />
+              Start Free Trial <ArrowRight size={14} />
             </Link>
-
           </nav>
-
         </div>
       )}
-
     </header>
   );
 }
