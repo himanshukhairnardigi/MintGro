@@ -1,29 +1,31 @@
-import Hero from "@/components/sections/Hero";
-import Trusted from "@/components/sections/Trusted";
-import Challenges from "@/components/sections/Challenges";
-import CRM from "@/components/sections/CRM";
-import Industries from "@/components/sections/Industries";
-import Personalized from "@/components/sections/Personalized";
-import Experience from "@/components/sections/Experience";
-import Steps from "@/components/sections/Steps";
-import Pricing from "@/components/sections/Pricing";
-import FAQ from "@/components/sections/FAQ";
-import FinalCTA from "@/components/sections/FinalCTA";
+import Navbar from "@/components/ui/Navbar";
+import Hero from "@/components/Hero";
+import Challenges from "@/components/Challenges";
+import Features from "@/components/Features";
+import Industries from "@/components/Industries";
+import Personalization from "@/components/Personalization";
+import MultiDeviceDemo from "@/components/MultiDeviceDemo";
+import HowItWorks from "@/components/HowItWorks";
+import Pricing from "@/components/Pricing";
+import FAQ from "@/components/FAQ";
+import Subscribe from "@/components/Subscribe";
+import Footer from "@/components/Footer";
 
-export default function HomePage() {
+export default function Home() {
   return (
-    <main>
+    <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
+      <Navbar />
       <Hero />
-      <Trusted />
       <Challenges />
-      <CRM />
+      <Features />
       <Industries />
-      <Personalized />
-      <Experience />
-      <Steps />
+      <Personalization />
+      <MultiDeviceDemo />
+      <HowItWorks />
       <Pricing />
       <FAQ />
-      <FinalCTA />
-    </main>
+      <Subscribe />
+      <Footer />
+    </div>
   );
 }

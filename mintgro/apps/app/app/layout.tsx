@@ -1,27 +1,20 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Header from "@/components/layout/Header";
 
 export const metadata: Metadata = {
-  title: "Mintgro | Business Growth Made Simple",
-  description: "Business growth made simple.",
+  title: "Mintgro — Business Growth Made Simple",
+  description:
+    "Transform challenges into opportunities with Mintgro's all-in-one business growth platform. Features, analytics, and tools designed to scale your business.",
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html lang="en">
-      <body className="bg-white text-[#292929] antialiased">
-
-        <Header />
-
-        <main>
-          {children}
-        </main>
-      </body>
+    <html lang="en" className="scroll-smooth">
+      <body className="antialiased">{children}</body>
     </html>
   );
 }
