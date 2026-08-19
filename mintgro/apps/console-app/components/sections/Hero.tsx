@@ -1,50 +1,57 @@
-"use client";
-
-import { motion } from "motion/react";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { Sparkles, Cloud, LayoutGrid, ShieldCheck, Smartphone } from "lucide-react";
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden bg-[#f0fff8]">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(96,230,181,.42),transparent_48%)]" />
+    <section className="relative isolate overflow-hidden bg-white bg-[radial-gradient(70%_80%_at_0%_0%,#d7f7e6_0%,rgba(255,255,255,0)_62%),radial-gradient(70%_80%_at_100%_0%,#ddf8ea_0%,rgba(255,255,255,0)_62%),linear-gradient(180deg,#eefdf4_0%,#ffffff_78%)]">
+      <div className="relative mx-auto flex w-full max-w-[1360px] flex-col items-center px-5 py-16 text-center sm:px-8 lg:px-10 lg:py-22">
+        <span className="inline-flex items-center gap-2 rounded-full border border-[#2B5142] bg-white px-4 py-2 text-sm font-medium leading-none tracking-normal text-[#2B5142] shadow-[inset_0px_2px_4px_rgba(0,0,0,0.08)]">
+          <Sparkles size={14} className="text-brand-400" />
+          Mintgro ERP For Every Industry
+        </span>
 
-      <div className="container relative flex min-h-[430px] flex-col items-center justify-center py-16 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: .5 }}
-        >
-          <span className="eyebrow">All-in-one business growth platform</span>
+        <h1 className="mt-10 max-w-[960px] text-[38px] font-bold leading-[1.1] tracking-[-0.02em] text-brand-ink sm:text-[52px] lg:text-[64px]">
+          Business Growth Made Simple with{" "}
+          <span className="text-brand-400">Mintgro</span>
+        </h1>
 
-          <h1 className="serif mt-5 max-w-3xl text-[clamp(38px,5vw,58px)] font-bold leading-[1.03] tracking-[-.045em] text-[#173f33]">
-            Business Growth Made Simple
-            <br />
-            with <span className="text-[#008d69]">Mintgro</span>
-          </h1>
+        <p className="mt-6 max-w-[810px] text-pretty text-base leading-7 text-brand-muted lg:text-lg lg:leading-8">
+          Run your entire business from one intelligent platform. Manage
+          customers, streamline operations and accelerate growth — whether you
+          are in healthcare, education, IT, retail or any industry.
+        </p>
 
-          <p className="mx-auto mt-5 max-w-2xl text-sm leading-6 text-[#65716c]">
-            Manage your customers, streamline your operations and grow your
-            business with one simple platform built around the way you work.
-          </p>
+        <div className="mt-10 flex flex-col items-center gap-3 sm:flex-row">
+          <a
+            href="mailto:hello@mintgro.com"
+            className="flex h-10 items-center gap-2 rounded-lg border border-[#cfcfcf] bg-white px-6 text-base font-medium text-brand-ink transition-colors hover:border-brand-500 hover:bg-brand-50 hover:text-brand-ink"
+          >
+            Book A Demo
+          </a>
+          <a
+            href="https://app.mintgro.com/signup"
+            className="flex h-10 items-center gap-2 rounded-lg border border-transparent bg-gradient-to-l from-brand-400 to-brand-700 px-6 text-base font-medium text-white transition-opacity hover:opacity-90 hover:text-white hover:border-transparent"
+          >
+            Start Free Trial &rarr;
+          </a>
+        </div>
 
-          <div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
-            <a href="#pricing" className="btn btn-green">
-              Start Free Trial <ArrowRight size={14} />
-            </a>
-            <a href="#contact" className="btn btn-light">
-              Book a Demo
-            </a>
-          </div>
-
-          <div className="mt-5 flex flex-wrap justify-center gap-x-5 gap-y-2">
-            {["No credit card", "Easy setup", "Cancel anytime"].map((item) => (
-              <span key={item} className="flex items-center gap-1 text-[10px] text-[#68746f]">
-                <CheckCircle2 size={11} className="text-[#008d69]" />
-                {item}
-              </span>
-            ))}
-          </div>
-        </motion.div>
+        <ul className="mt-11 flex flex-wrap items-center justify-center gap-x-9 gap-y-4">
+          <li className="flex items-center gap-2 text-sm font-medium text-brand-ink/80">
+            <Sparkles size={14} className="text-brand-400" /> Smart Insights
+          </li>
+          <li className="flex items-center gap-2 text-sm font-medium text-brand-ink/80">
+            <Cloud size={14} className="text-brand-400" /> Cloud based
+          </li>
+          <li className="flex items-center gap-2 text-sm font-medium text-brand-ink/80">
+            <LayoutGrid size={14} className="text-brand-400" /> Multi industry
+          </li>
+          <li className="flex items-center gap-2 text-sm font-medium text-brand-ink/80">
+            <ShieldCheck size={14} className="text-brand-400" /> Secure
+          </li>
+          <li className="flex items-center gap-2 text-sm font-medium text-brand-ink/80">
+            <Smartphone size={14} className="text-brand-400" /> Mobile ready
+          </li>
+        </ul>
       </div>
     </section>
   );

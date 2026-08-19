@@ -2,110 +2,84 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ChevronDown, Menu, X, ArrowRight } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { navigation } from "@/lib/navigation";
 
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [active, setActive] = useState<string | null>(null);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-black/[.05] bg-white/95 backdrop-blur-md">
-      <div className="container flex h-[68px] items-center">
-        <Link href="/" className="flex items-center shrink-0">
-          <span className="serif text-[23px] tracking-[-1px] text-[#315b4d]">
+    <header className="sticky top-0 z-40 border-b border-black/[0.07] bg-white/95 backdrop-blur">
+      <div className="mx-auto flex h-18 w-full max-w-[1360px] items-center gap-8 px-5 sm:px-8 lg:h-30 lg:px-10">
+        <Link href="/" className="shrink-0">
+          <span className="text-xl font-bold tracking-tight text-brand-ink lg:text-2xl">
             Mintgro
-          </span>
-          <span className="mx-2 h-7 w-px bg-[#d7dedb]" />
-          <span className="hidden text-[8px] leading-[10px] sm:flex sm:flex-col">
-            <span className="font-bold">Business Growth</span>
-            <span className="text-[#8b918e]">Made Simple</span>
           </span>
         </Link>
 
-        <nav className="ml-auto hidden items-center gap-7 lg:flex">
+        <nav className="ml-8 hidden items-center gap-7 lg:flex">
           {navigation.map((item) => (
-            <div
+            <Link
               key={item.label}
-              className="relative"
-              onMouseEnter={() => item.items.length && setActive(item.label)}
-              onMouseLeave={() => setActive(null)}
+              href={item.href}
+              className="text-base font-medium text-brand-ink/85 transition-colors hover:text-brand-500"
             >
-              <Link
-                href={item.href}
-                className="flex items-center gap-1 text-[11px] font-medium text-[#303634] hover:text-[#008d69]"
-              >
-                {item.label}
-                {item.items.length > 0 && <ChevronDown size={11} />}
-              </Link>
-
-              {item.items.length > 0 && active === item.label && (
-                <div className="absolute left-1/2 top-full mt-4 w-44 -translate-x-1/2 rounded-xl border border-[#e4ebe7] bg-white p-2 shadow-xl">
-                  {item.items.map((sub) => (
-                    <Link
-                      key={sub}
-                      href={item.href}
-                      className="block rounded-lg px-3 py-2 text-xs text-[#58625e] hover:bg-[#f0f8f4] hover:text-[#008d69]"
-                    >
-                      {sub}
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </div>
+              {item.label}
+            </Link>
           ))}
+        </nav>
 
+        <div className="ml-auto flex items-center gap-4">
           <Link
-            href="#contact"
-            className="text-[11px] font-medium hover:text-[#008d69]"
+            href="mailto:hello@mintgro.com"
+            className="hidden text-base font-medium text-brand-ink transition-colors hover:text-brand-500 lg:block"
           >
             Book a Demo
           </Link>
-
-          <Link href="#pricing" className="btn btn-green h-8 min-h-8">
-            Start Free Trial
-            <ArrowRight size={12} />
+          <Link
+            href="https://app.mintgro.com/signup"
+            className="hidden h-10 items-center gap-2 rounded-lg border border-transparent bg-gradient-to-l from-brand-400 to-brand-700 px-6 text-base font-medium text-white hover:opacity-90 hover:text-white lg:inline-flex"
+          >
+            Start Free Trial &rarr;
           </Link>
-        </nav>
-
-        <button
-          className="ml-auto rounded-md p-2 lg:hidden"
-          aria-label={mobileOpen ? "Close navigation" : "Open navigation"}
-          onClick={() => setMobileOpen((v) => !v)}
-        >
-          {mobileOpen ? <X size={22} /> : <Menu size={22} />}
-        </button>
+          <button
+            className="flex size-10 items-center justify-center rounded-lg border border-black/10 text-brand-ink lg:hidden"
+            aria-label={mobileOpen ? "Close navigation" : "Open navigation"}
+            onClick={() => setMobileOpen((v) => !v)}
+          >
+            {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
+        </div>
       </div>
 
       {mobileOpen && (
-        <div className="border-t border-black/[.05] bg-white lg:hidden">
-          <nav className="container flex flex-col py-4">
+        <div className="border-t border-black/[0.07] bg-white lg:hidden">
+          <nav className="mx-auto flex w-full max-w-[1360px] flex-col px-5 py-4">
             {navigation.map((item) => (
               <Link
                 key={item.label}
                 href={item.href}
                 onClick={() => setMobileOpen(false)}
-                className="flex items-center justify-between border-b border-[#edf0ef] py-4 text-sm font-medium"
+                className="border-b border-black/[0.07] py-3 text-base font-medium text-brand-ink/85"
               >
                 {item.label}
-                {item.items.length > 0 && <ChevronDown size={14} />}
               </Link>
             ))}
 
             <Link
-              href="#contact"
+              href="mailto:hello@mintgro.com"
               onClick={() => setMobileOpen(false)}
-              className="py-4 text-sm font-medium"
+              className="py-3 text-base font-medium text-brand-ink"
             >
               Book a Demo
             </Link>
 
             <Link
-              href="#pricing"
+              href="https://app.mintgro.com/signup"
               onClick={() => setMobileOpen(false)}
-              className="btn btn-green mt-2"
+              className="mt-3 flex h-10 items-center justify-center rounded-lg bg-gradient-to-l from-brand-400 to-brand-700 px-6 text-base font-medium text-white"
             >
-              Start Free Trial <ArrowRight size={14} />
+              Start Free Trial &rarr;
             </Link>
           </nav>
         </div>

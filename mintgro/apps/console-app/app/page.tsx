@@ -8,11 +8,12 @@ import Experience from "@/components/sections/Experience";
 import Steps from "@/components/sections/Steps";
 import Pricing from "@/components/sections/Pricing";
 import FAQ from "@/components/sections/FAQ";
+import Newsletter from "@/components/sections/Newsletter";
 import FinalCTA from "@/components/sections/FinalCTA";
 
 export default function HomePage() {
   return (
-    <main>
+    <>
       <Hero />
       <Trusted />
       <Challenges />
@@ -23,7 +24,8 @@ export default function HomePage() {
       <Steps />
       <Pricing />
       <FAQ />
+      <Newsletter />
       <FinalCTA />
-    </main>
+    </>
   );
 }

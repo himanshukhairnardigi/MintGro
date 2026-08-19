@@ -1,61 +1,86 @@
-"use client";
-
-import { useState } from "react";
-import { ChevronDown } from "lucide-react";
+import { Sparkles, ChevronDown } from "lucide-react";
 
 const faqs = [
-  ["What is Mintgro?", "Mintgro is a business growth platform that brings customer management, sales, workflows and reporting together."],
-  ["Who is Mintgro for?", "It is designed for growing businesses and teams that want simpler, more connected processes."],
-  ["Can I try Mintgro for free?", "Yes. The homepage CTA is prepared for a free-trial flow that can later connect to your signup API."],
-  ["Can I customize the platform?", "The architecture supports configurable modules, workflows and permissions."],
-  ["How does onboarding work?", "Create an account, add your business information, configure your workspace and start using the modules you need."],
-  ["Can Mintgro integrate with other tools?", "Yes. Integrations can be added through the NestJS API layer as your product requirements are finalized."]
+  {
+    question: "Is Mintgro suitable for my industry?",
+    answer:
+      "Yes. Mintgro is built with a flexible, modular architecture that adapts to any industry — from healthcare and education to manufacturing, retail and professional services. You can choose pre-built industry templates or customize every module to match your workflow.",
+  },
+  {
+    question: "Can I try Mintgro before committing?",
+    answer:
+      "Absolutely. We offer a free trial so you can explore every feature, invite your team and see how Mintgro fits your business before making any commitment. No credit card required.",
+  },
+  {
+    question: "How does onboarding work?",
+    answer:
+      "Getting started is simple: create an account, choose your industry, invite your team and configure your workspace. Our guided setup walks you through each step, and our support team is available if you need help.",
+  },
+  {
+    question: "Can I customize the platform for my team?",
+    answer:
+      "Yes. Mintgro supports custom workflows, role-based permissions, branded dashboards and configurable modules. You can enable exactly the features your team needs and hide what you don't.",
+  },
+  {
+    question: "Does Mintgro integrate with other tools?",
+    answer:
+      "Yes. Mintgro integrates with popular tools for email, accounting, calendars and more. Our API also lets you build custom integrations to connect with your existing tech stack.",
+  },
+  {
+    question: "What kind of support do you offer?",
+    answer:
+      "We offer email support for all plans, priority support for Growth and above, and a dedicated account manager for Professional and Enterprise customers. Our help center and documentation are available 24/7.",
+  },
 ];
 
 export default function FAQ() {
-  const [open, setOpen] = useState<number | null>(0);
-
   return (
-    <section className="bg-white py-20">
-      <div className="container max-w-3xl">
-        <div className="text-center">
-          <p className="eyebrow">FAQ</p>
-          <h2 className="section-title mt-4">Frequently Asked Questions</h2>
-          <p className="mt-4 text-sm text-[#737d78]">
-            Quick answers to the questions your customers are most likely to ask.
-          </p>
+    <section className="bg-white">
+      <div className="mx-auto w-full max-w-[1360px] px-5 py-16 sm:px-8 lg:px-10 lg:py-22">
+        <div className="flex flex-col items-center text-center">
+          <span className="inline-flex items-center gap-2 rounded-full border border-[#2B5142] bg-white px-4 py-2 text-sm font-medium leading-none tracking-normal text-[#2B5142] shadow-[inset_0px_2px_4px_rgba(0,0,0,0.08)]">
+            <Sparkles size={14} className="text-brand-400" />
+            FAQ&apos;s
+          </span>
+          <h2 className="mt-6 max-w-[640px] text-balance text-[32px] font-bold leading-[1.15] tracking-[-0.01em] text-brand-ink lg:text-[40px]">
+            Frequently Asked Questions
+          </h2>
         </div>
 
-        <div className="mt-10 divide-y divide-[#e5eae7] border-y border-[#e5eae7]">
-          {faqs.map(([question, answer], index) => {
-            const isOpen = open === index;
-            return (
-              <div key={question}>
-                <button
-                  className="flex w-full items-center justify-between py-5 text-left text-sm font-semibold text-[#36413d]"
-                  onClick={() => setOpen(isOpen ? null : index)}
-                  aria-expanded={isOpen}
-                >
-                  {question}
-                  <ChevronDown
-                    size={15}
-                    className={`transition-transform ${isOpen ? "rotate-180 text-[#008d69]" : ""}`}
-                  />
-                </button>
-
-                {isOpen && (
-                  <p className="pb-5 pr-8 text-xs leading-6 text-[#737d78]">
-                    {answer}
-                  </p>
-                )}
-              </div>
-            );
-          })}
+        <div className="mx-auto mt-12 max-w-[850px] space-y-4">
+          {faqs.map((faq, i) => (
+            <details
+              key={faq.question}
+              open={i === 0}
+              className="group rounded-xl border border-black/10 bg-white px-6 open:shadow-[0_5px_20px_rgba(0,0,0,0.05)]"
+            >
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-5 text-[15px] font-medium text-brand-ink [&::-webkit-details-marker]:hidden">
+                {faq.question}
+                <ChevronDown
+                  size={20}
+                  className="shrink-0 text-brand-ink/60 transition-transform group-open:rotate-180"
+                />
+              </summary>
+              <p className="-mt-1 pb-5 pr-10 text-sm leading-6 text-brand-muted">
+                {faq.answer}
+              </p>
+            </details>
+          ))}
         </div>
 
-        <div className="mt-8 flex justify-center gap-3">
-          <a href="#contact" className="btn btn-light">Contact Us</a>
-          <a href="#pricing" className="btn btn-green">Start Free Trial</a>
+        <div className="mt-12 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <a
+            href="mailto:hello@mintgro.com"
+            className="flex h-10 items-center gap-2 rounded-lg border border-[#cfcfcf] bg-white px-6 text-base font-medium text-brand-ink transition-colors hover:border-brand-500 hover:bg-brand-50 hover:text-brand-ink"
+          >
+            Book A Demo
+          </a>
+          <a
+            href="/faq"
+            className="flex h-10 items-center gap-2 rounded-lg border border-transparent bg-gradient-to-l from-brand-400 to-brand-700 px-6 text-base font-medium text-white transition-opacity hover:opacity-90 hover:text-white hover:border-transparent"
+          >
+            View All FAQ&apos;s &rarr;
+          </a>
         </div>
       </div>
     </section>
